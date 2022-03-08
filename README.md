@@ -31,6 +31,7 @@ Astroport pair LP token.
   };
 ```
 ## LP Staking Process
+### Swap
 1. Calculate price
 ```
 // Calculate belief price using pool balances.
@@ -108,8 +109,8 @@ const buySwap = new MsgExecuteContract(
 const tx_buy = await wallet.createAndSignTx({ msgs: [buySwap] });
 const result_buy = await terra.tx.broadcast(tx_buy);
 ```
-
-2. Provide Liquidity
+### Provide Liquidity
+3. Provide Liquidity
 Increase Allowence on the token
 ```
 const AMOUNT_SAYVE=10000
@@ -159,8 +160,8 @@ new Coins({ uusd: String(AMOUNT_UST*MILLION) }),
 const tx = await wallet.createAndSignTx({ msgs: [increase_allowance,provide_liquidity] });
 const result = await terra.tx.broadcast(tx);
 ```
-
-3. Stake token
+### Staking
+4. Stake token
 Now that we have an lp we can check the lp balance and amount
 let us check for this user: terra1elk88ssjcdhkzx3sx8tnux6dk6nsdspmf3fuat
 contract is the sayveUstLPToken: terra1dj3u83nfe9zpqd5r46plwmmmhe30kzr3axtx9x
@@ -213,7 +214,7 @@ which we can see how much sayve and ust per that lp
   }
 ]
 ```
-4. Stake the LP
+5. Stake the LP
 
   we need to provide a {"bond":{}} hook when we send sayveUstLPToken: 'terra1dj3u83nfe9zpqd5r46plwmmmhe30kzr3axtx9x' to the staking contract
   staking: 'terra12yfehzpc69jwxeleck83r6vl99np34frqsx0jv'
@@ -240,7 +241,7 @@ const result_buy = await terra.tx.broadcast(stake_lp);
 
 ```
 
-5. Check balance of staked on to the staking contract
+6. Check balance of staked on to the staking contract
   staking: 'terra12yfehzpc69jwxeleck83r6vl99np34frqsx0jv'
 ```
 {
@@ -274,7 +275,7 @@ response
 ```
 
 
-6. Claim Rewards
+7. Claim Rewards
 Withdraw from staking contract staking: 'terra12yfehzpc69jwxeleck83r6vl99np34frqsx0jv'
 
  ```
@@ -292,7 +293,7 @@ const result_claim_lp_rewards = await terra.tx.broadcast(claim_lp_rewards);
 ```
 
 
-7. Unstake
+8. Unstake
 Unstake from staking contract staking: 'terra12yfehzpc69jwxeleck83r6vl99np34frqsx0jv'
 ```
 const unstake_lp = new MsgExecuteContract(
