@@ -82,7 +82,7 @@ which response is
 ```
 so we swapped 1000000 and got back 103653, so belief_price = (return_amount/swap_amount) = 103653/1000000=0.103653
 
-2. Swap 1 UST for Sayve
+2. Swap 1 UST for Sayve, we want beliefPriceUSTPerSAYVE=which is 0.103653
 ```
 const 1_UST=1
 const MILLION=1000000
